@@ -18,7 +18,7 @@ const io = require('socket.io')(server, {
     maxHttpBufferSize: 1e9,
     pingTimeout: 3000000,
     cors: {
-        origin: "*"
+        origin: "http://react-chat-app.onrender.com/"
     }
 });
 
