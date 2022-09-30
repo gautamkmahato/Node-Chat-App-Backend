@@ -8,24 +8,23 @@ const PORT = process.env.PORT || 5000;
 
 const server = require('http').createServer(app);
 
-const socket = require("socket.io-client")("react-chat-app.onrender.com");
-
-
+// const socket = require("socket.io-client")("react-chat-app.onrender.com");
+// socket.on("connect_error", (err) => {
+//     console.log(`connect_error due to ${err.message}`);
+//   });
 
 const io = require('socket.io')(server, {
     transports: ['websocket'],
     maxHttpBufferSize: 1e9,
     pingTimeout: 3000000,
     cors: {
-        origin: "https://node-chat-app-51q9.onrender.com"
+        origin: "*"
     }
 });
 
 
 io.on("connection", (socket) => {
-    socket.on("connect_error", (err) => {
-        console.log(`connect_error due to ${err.message}`);
-      });
+    
     console.log(socket.id);
     socket.on("join", (data) => {
         socket.join(data.roomId);
