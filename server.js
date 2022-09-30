@@ -7,6 +7,13 @@ app.use(cors());
 const PORT = process.env.PORT || 5000;
 
 const server = require('http').createServer(app);
+
+const socket = require("socket.io-client")("https://example.com");
+
+socket.on("connect_error", (err) => {
+  console.log(`connect_error due to ${err.message}`);
+});
+
 const io = require('socket.io')(server, {
     maxHttpBufferSize: 1e9,
     pingTimeout: 300000,
